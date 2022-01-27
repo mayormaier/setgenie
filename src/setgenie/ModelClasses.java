@@ -39,7 +39,7 @@ public class ModelClasses {
         List<Workout> startingList = new ArrayList<>();
         startingList.add(day1);
         Search s1 = new Search("mayormaier", "Meet");
-        List<Workout> completedSearch = s1.executeSearch(startingList);
-        System.out.println(completedSearch);
+        s1.executeSearch(startingList);
+        System.out.println(s1);
     }
 }

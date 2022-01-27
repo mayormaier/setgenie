@@ -18,7 +18,7 @@ public class Search {
         sb.append("Terms:").append(Arrays.toString(searchTerms));
         sb.append("\nResults:");
         for (Workout w : searchResult) {
-            sb.append("\t").append(w.toString());
+            sb.append("\n\t").append(w.toString());
         }
         return sb.toString();
     }
