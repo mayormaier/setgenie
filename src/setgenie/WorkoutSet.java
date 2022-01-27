@@ -1,3 +1,5 @@
+package setgenie;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,10 +15,12 @@ public class WorkoutSet {
     private List<WorkoutElement> elementList;
 
     public enum SETTYPE {
-        WARMUP("Warm-up"), MAIN("Main Set"), PRE("Pre-set"), POST("Post-set"), KICK("Kick Set"), PULL("Pull Set"), COOLDOWN("cooldown");
+        WARMUP("Warm-up"), MAIN("Main Set"), PRE("Pre-set"), POST("Post-set"), KICK("Kick Set"), PULL("Pull Set"),
+        COOLDOWN("cooldown");
 
         private final String typeName;
-        private SETTYPE(String typeName){
+
+        private SETTYPE(String typeName) {
             this.typeName = typeName;
         }
 
@@ -46,12 +50,12 @@ public class WorkoutSet {
         this.elementList = new ArrayList<>();
     }
 
-    public String toString(){
+    public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Name: ").append(this.workoutSetName);
-        sb.append("\nType: " ).append(this.workoutSetType.toString());
+        sb.append("\nType: ").append(this.workoutSetType.toString());
         sb.append("\n");
-        for (WorkoutElement element: this.elementList) {
+        for (WorkoutElement element : this.elementList) {
             sb.append("\t").append(element.toString()).append("\n");
         }
         return sb.toString();
@@ -116,7 +120,7 @@ public class WorkoutSet {
     public void calculateMetadata() {
         int tempDist = 0;
         int tempDur = 0;
-        for (WorkoutElement element: this.elementList) {
+        for (WorkoutElement element : this.elementList) {
             tempDist += element.getElementTotalDistance();
             tempDur += element.getElementTotalDuration();
 

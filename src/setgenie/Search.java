@@ -1,3 +1,5 @@
+package setgenie;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -6,16 +8,16 @@ public class Search {
     private String[] searchTerms;
     private List<Workout> searchResult;
 
-    public Search(String ... terms){
+    public Search(String... terms) {
         searchTerms = terms;
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Terms:").append(Arrays.toString(searchTerms));
         sb.append("\nResults:");
-        for (Workout w: searchResult){
+        for (Workout w : searchResult) {
             sb.append("\t").append(w.toString());
         }
         return sb.toString();
@@ -37,11 +39,12 @@ public class Search {
         this.searchResult = searchResult;
     }
 
-    public List<Workout> executeSearch(List<Workout> workoutList){
+    public List<Workout> executeSearch(List<Workout> workoutList) {
         List<Workout> returnList = new ArrayList<>();
-        for (Workout w: workoutList){
-            for (String s: searchTerms){
-                if (Integer.toString(w.getWorkoutDistance()).contains(s) || w.getWorkoutName().contains(s) || w.getWorkoutOwner().toString().contains(s) ){
+        for (Workout w : workoutList) {
+            for (String s : searchTerms) {
+                if (Integer.toString(w.getWorkoutDistance()).contains(s) || w.getWorkoutName().contains(s)
+                        || w.getWorkoutOwner().toString().contains(s)) {
                     returnList.add(w);
                 }
             }

@@ -1,3 +1,5 @@
+package setgenie;
+
 import java.util.concurrent.TimeUnit;
 
 public class WorkoutElement {
@@ -11,20 +13,23 @@ public class WorkoutElement {
     private String elementNotes;
 
     public enum STROKE {
-        BUTTERFLY("Butterfly"), BACKSTROKE("Backstroke"), BREASTSTROKE("Breaststroke"), FREESTYLE("Freestyle"), KICK("Kick"), IM("IM");
+        BUTTERFLY("Butterfly"), BACKSTROKE("Backstroke"), BREASTSTROKE("Breaststroke"), FREESTYLE("Freestyle"),
+        KICK("Kick"), IM("IM");
 
         private final String strokeName;
-        private STROKE (String strokeName) {
+
+        private STROKE(String strokeName) {
             this.strokeName = strokeName;
         }
 
         @Override
-        public String toString(){
+        public String toString() {
             return strokeName;
         }
     }
 
-    public WorkoutElement(int elementQuantity, int elementDistance, int elementInterval, STROKE elementStroke, String elementNotes) {
+    public WorkoutElement(int elementQuantity, int elementDistance, int elementInterval, STROKE elementStroke,
+            String elementNotes) {
         this.elementQuantity = elementQuantity;
         this.elementDistance = elementDistance;
         this.elementInterval = elementInterval;
@@ -69,11 +74,12 @@ public class WorkoutElement {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(this.elementQuantity).append("x").append(this.elementDistance).append(" ").append(this.elementStroke.toString()).append(" ").append("@");
+        sb.append(this.elementQuantity).append("x").append(this.elementDistance).append(" ")
+                .append(this.elementStroke.toString()).append(" ").append("@");
         int intervalTemp = this.elementInterval;
-        if (intervalTemp >= 60){
+        if (intervalTemp >= 60) {
             long mins = TimeUnit.SECONDS.toMinutes(intervalTemp);
             intervalTemp -= TimeUnit.MINUTES.toSeconds(mins);
             long secs = intervalTemp;
@@ -93,7 +99,7 @@ public class WorkoutElement {
             }
         }
 
-        if (this.elementNotes != null){
+        if (this.elementNotes != null) {
             sb.append("\tNOTES: ").append(this.elementNotes);
         }
 

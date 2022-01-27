@@ -1,3 +1,5 @@
+package setgenie;
+
 import java.util.ArrayList;
 
 public class User {
@@ -17,17 +19,18 @@ public class User {
 
         private final String roleName;
 
-        private ROLE(String roleName){
+        private ROLE(String roleName) {
             this.roleName = roleName;
         }
 
         @Override
-        public String toString(){
+        public String toString() {
             return this.roleName;
         }
     }
 
-    public User(String userFirstName, String userLastName, String userEmail, String userPassword, String username, ROLE userRole) {
+    public User(String userFirstName, String userLastName, String userEmail, String userPassword, String username,
+            ROLE userRole) {
         this.userFirstName = userFirstName;
         this.userLastName = userLastName;
         this.userEmail = userEmail;
@@ -50,7 +53,7 @@ public class User {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(this.userLastName).append(", ").append(this.userFirstName).append(":\t").append(this.username);
         return sb.toString();
@@ -68,7 +71,9 @@ public class User {
         return userLastName;
     }
 
-    public void setUserLastName(String userLastName) { this.userLastName = userLastName; }
+    public void setUserLastName(String userLastName) {
+        this.userLastName = userLastName;
+    }
 
     public String getUserEmail() {
         return userEmail;

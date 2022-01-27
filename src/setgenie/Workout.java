@@ -1,3 +1,5 @@
+package setgenie;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -40,19 +42,20 @@ public class Workout {
         this.workoutSetList = new ArrayList<>();
         this.workoutOwner = workoutOwner;
     }
+
     @Override
-    public String toString(){
+    public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(this.workoutName);
         sb.append("\nDistance: ").append(this.workoutDistance);
         sb.append("\nDuration: ");
         int durTemp = this.workoutDuration;
-        if (durTemp >= 3600){
+        if (durTemp >= 3600) {
             long hrs = TimeUnit.SECONDS.toHours(durTemp);
             durTemp -= TimeUnit.HOURS.toSeconds(hrs);
             sb.append(hrs).append(":");
         }
-        if (durTemp >= 60){
+        if (durTemp >= 60) {
             if (durTemp < 600) {
                 sb.append("0");
             }
@@ -145,7 +148,7 @@ public class Workout {
         int tempDist = 0;
         int tempDur = 0;
 
-        for (WorkoutSet s: this.workoutSetList) {
+        for (WorkoutSet s : this.workoutSetList) {
             tempDist += s.getWorkoutSetDistance();
             tempDur += s.getWorkoutSetDuration();
         }
