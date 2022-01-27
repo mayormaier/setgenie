@@ -7,16 +7,27 @@ public class User {
     private String userEmail;
     private String userPassword;
     private String username;
-    private UserRole userRole;
+    private ROLE userRole;
 
     private ArrayList<Workout> userSavedWorkouts;
     private ArrayList<Workout> userCreatedWorkouts;
 
-    public enum UserRole {
-        ATHLETE, COACH, OTHER
+    public enum ROLE {
+        ATHLETE("Athlete"), COACH("Coach"), OTHER("Other");
+
+        private final String roleName;
+
+        private ROLE(String roleName){
+            this.roleName = roleName;
+        }
+
+        @Override
+        public String toString(){
+            return this.roleName;
+        }
     }
 
-    public User(String userFirstName, String userLastName, String userEmail, String userPassword, String username, UserRole userRole) {
+    public User(String userFirstName, String userLastName, String userEmail, String userPassword, String username, ROLE userRole) {
         this.userFirstName = userFirstName;
         this.userLastName = userLastName;
         this.userEmail = userEmail;
@@ -83,11 +94,11 @@ public class User {
         this.username = username;
     }
 
-    public UserRole getUserRole() {
+    public ROLE getUserRole() {
         return userRole;
     }
 
-    public void setUserRole(UserRole userRole) {
+    public void setUserRole(ROLE userRole) {
         this.userRole = userRole;
     }
 
