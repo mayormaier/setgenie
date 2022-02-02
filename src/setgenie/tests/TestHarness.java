@@ -45,7 +45,7 @@ public class TestHarness {
         User u2 = new User("Bob", "Jones", "bjones@email.com" , "bobstrongpassword", "bjones1");
 
         if (u2 != null) {
-            System.out.println("User 2 created successfully!");
+            System.out.println("User instance 2 created successfully!");
             //test toString()
             System.out.println(u2.toString());
         } else {
@@ -75,7 +75,7 @@ public class TestHarness {
         Workout w1 = new Workout("Workout 1", "This is a workout test", u1);
 
         if (w1 != null){
-            System.out.println("User instance 1 created successfully!");
+            System.out.println("Workout instance created successfully!");
 
             //Getting workout information - testing getters
             System.out.println("Workout info: " + w1.getWorkoutName() + " " + w1.getWorkoutNotes()  + " " + w1.getWorkoutOwner() + " " + w1.getWorkoutDistance() + " " + w1.getWorkoutDuration() + " " + w1.getUuid() + " " + w1.getWorkoutSetList() + " " + w1.getWorkoutStrokePercentages());
@@ -105,6 +105,8 @@ public class TestHarness {
 
             // testing toString()
             System.out.println(w1.toString());
+        } else {
+            System.out.println("Error creating workout instance");
         }
     }
 }
