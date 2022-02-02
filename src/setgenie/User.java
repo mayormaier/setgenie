@@ -1,6 +1,7 @@
 package setgenie;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class User {
 
@@ -11,8 +12,8 @@ public class User {
     private String username;
     private ROLE userRole;
 
-    private ArrayList<Workout> userSavedWorkouts;
-    private ArrayList<Workout> userCreatedWorkouts;
+    private List<Workout> userSavedWorkouts;
+    private List<Workout> userCreatedWorkouts;
 
     public enum ROLE {
         ATHLETE("Athlete"), COACH("Coach"), OTHER("Other");
@@ -107,19 +108,19 @@ public class User {
         this.userRole = userRole;
     }
 
-    public ArrayList<Workout> getUserSavedWorkouts() {
+    public List<Workout> getUserSavedWorkouts() {
         return userSavedWorkouts;
     }
 
-    public void setUserSavedWorkouts(ArrayList<Workout> userSavedWorkouts) {
+    public void setUserSavedWorkouts(List<Workout> userSavedWorkouts) {
         this.userSavedWorkouts = userSavedWorkouts;
     }
 
-    public ArrayList<Workout> getUserCreatedWorkouts() {
+    public List<Workout> getUserCreatedWorkouts() {
         return userCreatedWorkouts;
     }
 
-    public void setUserCreatedWorkouts(ArrayList<Workout> userCreatedWorkouts) {
+    public void setUserCreatedWorkouts(List<Workout> userCreatedWorkouts) {
         this.userCreatedWorkouts = userCreatedWorkouts;
     }
 }
