@@ -78,3 +78,6 @@ fabric.properties
 
 # Exported Project Files
 *.zip
+
+# Mac Files
+.DS_Store
