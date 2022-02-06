@@ -41,5 +41,15 @@ public class ModelClasses {
         Search s1 = new Search("mayormaier", "Meet");
         s1.executeSearch(startingList);
         System.out.println(s1);
+
+        //more workoutSet testing
+        WorkoutElement ew1 = new WorkoutElement(500, 345, WorkoutElement.STROKE.FREESTYLE);
+        WorkoutElement ew2 = new WorkoutElement(2,200, 165, WorkoutElement.STROKE.IM);
+        WorkoutElement ew3 = new WorkoutElement(5,100, 80, WorkoutElement.STROKE.FREESTYLE);
+        WorkoutSet w = new WorkoutSet("Good Warm Up", WorkoutSet.SETTYPE.WARMUP, 1);
+        w.addElement(ew1);
+        w.addElement(ew2);
+        w.addElement(ew3);
+        System.out.println(w);
     }
 }
