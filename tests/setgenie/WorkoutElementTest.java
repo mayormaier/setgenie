@@ -1,6 +1,7 @@
 package setgenie;
 
 import org.junit.jupiter.api.Test;
+import setgenie.model.WorkoutElement;
 
 import static org.junit.jupiter.api.Assertions.*;
 

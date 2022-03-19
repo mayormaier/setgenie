@@ -1,6 +1,8 @@
 package setgenie;
 
 import org.junit.jupiter.api.Test;
+import setgenie.model.WorkoutElement;
+import setgenie.model.WorkoutSet;
 
 import java.util.ArrayList;
 

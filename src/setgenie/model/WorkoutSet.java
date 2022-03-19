@@ -1,9 +1,10 @@
-package setgenie;
+package setgenie.model;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-public class WorkoutSet {
+public class WorkoutSet implements swimmingElement{
 
     private String workoutSetName;
     private String workoutSetNotes;
@@ -117,7 +118,8 @@ public class WorkoutSet {
         this.elementList = elementList;
     }
 
-    public void calculateMetadata() {
+    @Override
+    public void updateTotals() {
         int tempDist = 0;
         int tempDur = 0;
         for (WorkoutElement element : this.elementList) {
@@ -129,8 +131,48 @@ public class WorkoutSet {
         }
     }
 
+    @Override
+    public String calculateDuration() {
+        int durationSecsTotal = 0;
+        for (WorkoutElement e : this.getElementList()){
+            durationSecsTotal += e.getElementTotalDuration();
+        }
+
+        int durationHours = durationSecsTotal / 3600;
+        int durationMins = (durationSecsTotal - (durationHours * 3600)) / 60;
+        int durationSecs = durationSecsTotal % 60;
+
+        if (durationHours > 0){
+            if (durationMins == 0){
+                return "Duration: " + durationHours + ":00:" + durationSecs;
+            } else {
+                return "Duration: " + durationHours + ":" + durationMins + ":" + durationSecs;
+            }
+        } else if (durationMins > 0){
+            if (durationSecs == 0) {
+                return "Duration: " + durationMins + ":00";
+            } else {
+                return "Duration: " + durationMins + ":" + durationSecs;
+            }
+        } else {
+            return "Duration: :" + durationSecs;
+        }
+    }
+
+    @Override
+    public String calculateDistance() {
+        int totalDist = 0;
+        for (WorkoutElement e : this.getElementList()){
+            totalDist += e.getElementTotalDistance();
+        }
+        NumberFormat myFormat = NumberFormat.getInstance();
+        myFormat.setGroupingUsed(true);
+
+        return "Distance: " + myFormat.format(totalDist) + " yds";
+    }
+
     public void addElement(WorkoutElement element) {
         this.elementList.add(element);
-        calculateMetadata();
+        updateTotals();
     }
 }

@@ -1,5 +1,6 @@
-package setgenie;
+package setgenie.model;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -7,7 +8,7 @@ import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
-public class Workout {
+public class Workout implements swimmingElement{
     private UUID uuid;
 
     private String workoutName;
@@ -21,6 +22,7 @@ public class Workout {
 
     private User workoutOwner;
 
+    // @TODO add course support for workouts (SCY, LCM etc.)
     public Workout(String workoutName, String workoutNotes, User workoutOwner) {
         this.uuid = UUID.randomUUID();
         this.workoutName = workoutName;
@@ -144,7 +146,8 @@ public class Workout {
         this.workoutOwner = workoutOwner;
     }
 
-    public void calculateMetadata() {
+    @Override
+    public void updateTotals() {
         int tempDist = 0;
         int tempDur = 0;
 
@@ -160,6 +163,59 @@ public class Workout {
 
     public void addSet(WorkoutSet newSet) {
         this.workoutSetList.add(newSet);
-        calculateMetadata();
+        updateTotals();
+    }
+
+    @Override
+    public String calculateDuration() {
+        StringBuilder durationString = new StringBuilder();
+        int durationSecsTotal = 0;
+        for (WorkoutSet s : this.workoutSetList) {
+            durationSecsTotal += s.getWorkoutSetDuration();
+            durationString.append("\n").append(s.getWorkoutSetName()).append(":")
+                    .append("\t").append(s.calculateDuration());
+        }
+
+        int durationHours = durationSecsTotal / 3600;
+        int durationMins = (durationSecsTotal - (durationHours * 3600)) / 60;
+        int durationSecs = durationSecsTotal % 60;
+
+        durationString.append("\nTotal Duration: ");
+        if (durationHours > 0){
+            if (durationMins == 0){
+                durationString.append(durationHours).append(":00:").append(durationSecs);
+            } else if (durationMins < 10) {
+                durationString.append(durationHours).append(":0").append(durationMins).append(":").append(durationSecs);
+            } else {
+                durationString.append(durationHours).append(":").append(durationMins).append(":").append(durationSecs);
+            }
+        } else if (durationMins > 0){
+            if (durationSecs == 0) {
+                durationString.append(durationMins).append(":00");
+            } else {
+                durationString.append(durationMins).append(":").append(durationSecs);
+            }
+        } else {
+            durationString.append(durationSecs);
+        }
+        return durationString.toString();
+    }
+
+    @Override
+    public String calculateDistance() {
+        StringBuilder distanceString = new StringBuilder();
+        NumberFormat myFormat = NumberFormat.getInstance();
+        myFormat.setGroupingUsed(true);
+
+        int totalDist = 0;
+        for (WorkoutSet s : this.workoutSetList) {
+            totalDist += s.getWorkoutSetDuration();
+            distanceString.append("\n").append(s.getWorkoutSetName()).append(":")
+                    .append("\t").append(s.calculateDistance());
+        }
+
+        distanceString.append("\nTotal Distance: ").append(myFormat.format(totalDist)).append(" yds");
+
+        return distanceString.toString();
     }
 }

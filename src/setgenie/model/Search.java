@@ -1,15 +1,19 @@
-package setgenie;
+package setgenie.model;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.time.LocalDateTime;
 
 public class Search {
     private String[] searchTerms;
     private List<Workout> searchResult;
+    private LocalDateTime searchTime;
 
     public Search(String... terms) {
+
         searchTerms = terms;
+        searchTime = null;
     }
 
     @Override
@@ -31,7 +35,10 @@ public class Search {
         this.searchTerms = searchTerms;
     }
 
-    public List<Workout> getSearchResult() {
+    public List<Workout> getSearchResult(List<Workout> workoutList) {
+        if (searchTime == null){
+            executeSearch(workoutList);
+        }
         return searchResult;
     }
 
@@ -50,6 +57,7 @@ public class Search {
             }
         }
         this.searchResult = returnList;
+        this.searchTime = LocalDateTime.now();
         return returnList;
     }
 }

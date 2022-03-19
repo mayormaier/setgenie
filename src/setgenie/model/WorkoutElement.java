@@ -1,4 +1,4 @@
-package setgenie;
+package setgenie.model;
 
 import java.util.concurrent.TimeUnit;
 

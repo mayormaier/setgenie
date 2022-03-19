@@ -1,4 +1,4 @@
-package setgenie;
+package setgenie.model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,6 +10,7 @@ public class User {
     private String userEmail;
     private String userPassword;
     private String username;
+    private String userClubName;
     private ROLE userRole;
 
     private List<Workout> userSavedWorkouts;
@@ -30,14 +31,14 @@ public class User {
         }
     }
 
-    public User(String userFirstName, String userLastName, String userEmail, String userPassword, String username,
-            ROLE userRole) {
+    public User(String userFirstName, String userLastName, String userEmail, String userPassword, String username, String userClubName) {
         this.userFirstName = userFirstName;
         this.userLastName = userLastName;
         this.userEmail = userEmail;
         this.userPassword = userPassword;
         this.username = username;
-        this.userRole = userRole;
+        this.userRole = null;
+        this.userClubName = userClubName;
         userSavedWorkouts = new ArrayList<>();
         userCreatedWorkouts = new ArrayList<>();
     }
@@ -49,6 +50,7 @@ public class User {
         this.userPassword = userPassword;
         this.username = username;
         this.userRole = null;
+        this.userClubName = "Unattached";
         userSavedWorkouts = new ArrayList<>();
         userCreatedWorkouts = new ArrayList<>();
     }
@@ -122,5 +124,21 @@ public class User {
 
     public void setUserCreatedWorkouts(List<Workout> userCreatedWorkouts) {
         this.userCreatedWorkouts = userCreatedWorkouts;
+    }
+
+    public String getUserClubName() {
+        return this.userClubName;
+    }
+
+    public void setUserClubName(String userClubName) {
+        this.userClubName = userClubName;
+    }
+
+    public void addUserCreatedWorkout(Workout newWorkout){
+        this.userCreatedWorkouts.add(newWorkout);
+    }
+
+    public String shareWorkout(Workout w){
+        return "Check out " + w.getWorkoutName() + " on SetGenie";
     }
 }
