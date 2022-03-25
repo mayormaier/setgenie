@@ -19,6 +19,8 @@ public class WorkoutElementList {
         }
     }
 
+    public ArrayList<WorkoutElement> getElementList(){return (ArrayList<WorkoutElement>) this.elementList;}
+
     public void add(WorkoutElement w){
         this.elementList.add(w);
     }

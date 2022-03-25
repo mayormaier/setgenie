@@ -8,17 +8,47 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class WorkoutElementCntl implements ActionListener, DocumentListener {
     WorkoutElementList elementList;
     WorkoutElementUI elementUI;
     int listPosition;
+    boolean fromListView = false;
 
     public WorkoutElementCntl() {
         this.elementList = new WorkoutElementList();
         this.elementUI = new WorkoutElementUI(this);
         this.listPosition = 0;
-        createSampleData();
+        updateButtons();
+        addFieldListeners();
+        validateButtons();
+        validateFields();
+        if (this.elementList.get(this.listPosition) != null){
+            this.elementUI.updatePane(this.elementList.get(this.listPosition));
+        }
+        this.elementUI.setVisible(true);
+    }
+    public WorkoutElementCntl(int selectedRow, WorkoutElementList elements) {
+        this.elementList = elements;
+        this.listPosition = selectedRow;
+        this.fromListView = true;
+        this.elementUI = new WorkoutElementUI(this);
+        updateButtons();
+        addFieldListeners();
+        validateButtons();
+        validateFields();
+        if (this.elementList.get(this.listPosition) != null){
+            this.elementUI.updatePane(this.elementList.get(this.listPosition));
+        }
+        this.elementUI.setVisible(true);
+    }
+
+    public WorkoutElementCntl(WorkoutElementList elements) {
+        this.elementList = elements;
+        this.listPosition = -1;
+        this.fromListView = true;
+        this.elementUI = new WorkoutElementUI(this);
         updateButtons();
         addFieldListeners();
         validateButtons();
@@ -69,20 +99,6 @@ public class WorkoutElementCntl implements ActionListener, DocumentListener {
         }
     }
 
-    //qty, dist, interval, stroke
-    public void createSampleData(){
-        WorkoutElement w1 = new WorkoutElement(1, 500, 360, WorkoutElement.STROKE.FREESTYLE);
-        this.elementList.add(w1);
-        WorkoutElement w2 = new WorkoutElement(2, 400, 300, WorkoutElement.STROKE.IM, "Drill, Kick, Drill, Swim by 100");
-        this.elementList.add(w2);
-        WorkoutElement w3 = new WorkoutElement(2, 300, 300, WorkoutElement.STROKE.KICK);
-        this.elementList.add(w3);
-        WorkoutElement w4 = new WorkoutElement(1, 200, 150, WorkoutElement.STROKE.IM);
-        this.elementList.add(w4);
-        WorkoutElement w5 = new WorkoutElement(5, 100, 75, WorkoutElement.STROKE.FREESTYLE, "Descend");
-        this.elementList.add(w5);
-    }
-
     @Override
     public void actionPerformed(ActionEvent e) {
         Object obj = e.getSource();
@@ -124,7 +140,12 @@ public class WorkoutElementCntl implements ActionListener, DocumentListener {
             }
 
         } else if (obj == this.elementUI.quitButton){
-            System.exit(0);
+            if (fromListView){
+                elementUI.dispose();
+                ElementListCtl returnCtl = new ElementListCtl(elementList);
+            } else {
+                System.exit(0);
+            }
         }
     }
 
@@ -149,5 +170,9 @@ public class WorkoutElementCntl implements ActionListener, DocumentListener {
         } else {
             this.elementUI.addButton.setEnabled(false);
         }
+    }
+
+    public boolean getListViewStatus(){
+        return this.fromListView;
     }
 }

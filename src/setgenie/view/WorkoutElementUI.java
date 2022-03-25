@@ -27,12 +27,14 @@ public class WorkoutElementUI extends JFrame{
     public JTextField distTextField;
     public JTextField intervalTextField;
     private JComboBox strokeDropdown;
-
     private WorkoutElementCntl elementCtl;
 
     public WorkoutElementUI(WorkoutElementCntl ctl) {
         this.elementCtl = ctl;
         this.strokeDropdown.setModel(new DefaultComboBoxModel(WorkoutElement.STROKE.values()));
+        if (this.elementCtl.getListViewStatus()) {
+            this.quitButton.setText("Return to List");
+        }
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(850, 300);
         add(panel1);
@@ -73,6 +75,8 @@ public class WorkoutElementUI extends JFrame{
         qtyTextField.setText("");
         distTextField.setText("");
         intervalTextField.setText("");
+        totalTimeVal.setText("");
+        totalDistVal.setText("");
     }
 
 }
