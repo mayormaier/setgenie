@@ -174,12 +174,12 @@ public class TestHarness {
         w1.addSet(s1);
         w1.addSet(s2);
 
-        ArrayList<swimmingElement> testArray = new ArrayList<>();
+        ArrayList<SwimmingElement> testArray = new ArrayList<>();
         testArray.add(s1);
         testArray.add(s2);
         testArray.add(w1);
 
-        for (swimmingElement sE : testArray){
+        for (SwimmingElement sE : testArray){
             System.out.println("****************");
             System.out.println(sE.calculateDistance());
             System.out.println(sE.calculateDuration());

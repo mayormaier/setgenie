@@ -1,6 +1,6 @@
 package setgenie.model;
 
-public interface swimmingElement {
+public interface SwimmingElement {
 
     public abstract String calculateDuration();
     public abstract String calculateDistance();

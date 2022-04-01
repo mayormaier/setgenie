@@ -4,7 +4,7 @@ import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-public class WorkoutSet implements swimmingElement{
+public class WorkoutSet implements SwimmingElement {
 
     private String workoutSetName;
     private String workoutSetNotes;

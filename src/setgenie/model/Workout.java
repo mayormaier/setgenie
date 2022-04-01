@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
-public class Workout implements swimmingElement{
+public class Workout implements SwimmingElement {
     private UUID uuid;
 
     private String workoutName;
