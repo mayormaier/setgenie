@@ -1,9 +1,10 @@
 package setgenie.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class WorkoutElementList {
+public class WorkoutElementList implements Serializable {
 
     private List<WorkoutElement> elementList;
 
