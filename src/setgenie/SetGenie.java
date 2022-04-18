@@ -1,9 +1,7 @@
 package setgenie;
 
-import setgenie.controller.ElementListCtl;
-import setgenie.controller.WorkoutElementCntl;
-import setgenie.controller.LoginCtl;
-
+import setgenie.controller.*;
+import setgenie.model.User;
 public class SetGenie {
 
     // this is the main method in this case.

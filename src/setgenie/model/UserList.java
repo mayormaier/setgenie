@@ -57,8 +57,13 @@ public class UserList {
     }
 
     public void add(User u) {
-        userList.add(u);
-        writeUserListFile();
+        if (!this.contains(u)){
+            userList.add(u);
+            writeUserListFile();
+        } else {
+            throw new RuntimeException("This user already exists.");
+        }
+
     }
 
     public User get(int i) {
@@ -79,6 +84,15 @@ public class UserList {
 
     public void setUserList(ArrayList<User> newUserList){
         this.userList = newUserList;
+    }
+
+    public boolean contains(User n){
+        for (User u : this.userList){
+            if (u.equals(n)){
+                return true;
+            }
+        }
+        return false;
     }
 
     public void printUserList() {

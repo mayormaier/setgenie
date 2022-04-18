@@ -3,8 +3,9 @@ package setgenie.model;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
-public class User implements Serializable {
+public class User implements Serializable{
 
     private String userFirstName;
     private String userLastName;
@@ -61,6 +62,13 @@ public class User implements Serializable {
         StringBuilder sb = new StringBuilder();
         sb.append(this.userLastName).append(", ").append(this.userFirstName).append(":\t").append(this.username);
         return sb.toString();
+    }
+
+    @Override
+    public boolean equals(Object o){
+        if (o.getClass() != this.getClass()){return false;}
+        if (this.username.equals(((User) o).username)){return true;}
+        else {return false;}
     }
 
     public String getUserFirstName() {

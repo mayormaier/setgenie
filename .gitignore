@@ -81,3 +81,6 @@ fabric.properties
 
 # Mac Files
 .DS_Store
+
+# Local Data Serialization
+*.ser

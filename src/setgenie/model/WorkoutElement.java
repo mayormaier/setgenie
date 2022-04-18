@@ -1,8 +1,9 @@
 package setgenie.model;
 
+import java.io.Serializable;
 import java.util.concurrent.TimeUnit;
 
-public class WorkoutElement {
+public class WorkoutElement implements Serializable {
 
     private int elementQuantity;
     private int elementDistance;
@@ -11,6 +12,8 @@ public class WorkoutElement {
     private int elementTotalDuration;
     private STROKE elementStroke;
     private String elementNotes;
+
+    private String elementAuthor;
 
     public enum STROKE {
         BUTTERFLY("Butterfly"), BACKSTROKE("Backstroke"), BREASTSTROKE("Breaststroke"), FREESTYLE("Freestyle"),
@@ -28,13 +31,13 @@ public class WorkoutElement {
         }
     }
 
-    public WorkoutElement(int elementQuantity, int elementDistance, int elementInterval, STROKE elementStroke,
-            String elementNotes) {
+    public WorkoutElement(int elementQuantity, int elementDistance, int elementInterval, STROKE elementStroke, String elementNotes) {
         this.elementQuantity = elementQuantity;
         this.elementDistance = elementDistance;
         this.elementInterval = elementInterval;
         this.elementStroke = elementStroke;
         this.elementNotes = elementNotes;
+        this.elementAuthor = null;
 
         elementTotalDistance = elementQuantity * elementDistance;
         elementTotalDuration = elementQuantity * elementInterval;
@@ -46,6 +49,7 @@ public class WorkoutElement {
         this.elementInterval = elementInterval;
         this.elementStroke = elementStroke;
         this.elementNotes = elementNotes;
+        this.elementAuthor = null;
 
         elementTotalDistance = elementDistance;
         elementTotalDuration = elementInterval;
@@ -57,6 +61,7 @@ public class WorkoutElement {
         this.elementInterval = elementInterval;
         this.elementStroke = elementStroke;
         this.elementNotes = null;
+        this.elementAuthor = null;
 
         elementTotalDistance = elementQuantity * elementDistance;
         elementTotalDuration = elementQuantity * elementInterval;
@@ -67,6 +72,56 @@ public class WorkoutElement {
         this.elementDistance = elementDistance;
         this.elementInterval = elementInterval;
         this.elementStroke = elementStroke;
+        this.elementNotes = null;
+        this.elementAuthor = null;
+
+        elementTotalDistance = elementDistance;
+        elementTotalDuration = elementInterval;
+    }
+
+    public WorkoutElement(int elementQuantity, int elementDistance, int elementInterval, String elementAuthor, STROKE elementStroke,
+                          String elementNotes) {
+        this.elementQuantity = elementQuantity;
+        this.elementDistance = elementDistance;
+        this.elementInterval = elementInterval;
+        this.elementStroke = elementStroke;
+        this.elementNotes = elementNotes;
+        this.elementAuthor = elementAuthor;
+
+        elementTotalDistance = elementQuantity * elementDistance;
+        elementTotalDuration = elementQuantity * elementInterval;
+    }
+
+    public WorkoutElement(int elementDistance, int elementInterval, String elementAuthor, STROKE elementStroke, String elementNotes) {
+        this.elementQuantity = 1;
+        this.elementDistance = elementDistance;
+        this.elementInterval = elementInterval;
+        this.elementStroke = elementStroke;
+        this.elementNotes = elementNotes;
+        this.elementAuthor = elementAuthor;
+
+        elementTotalDistance = elementDistance;
+        elementTotalDuration = elementInterval;
+    }
+
+    public WorkoutElement(int elementQuantity, int elementDistance, int elementInterval, String elementAuthor, STROKE elementStroke) {
+        this.elementQuantity = elementQuantity;
+        this.elementDistance = elementDistance;
+        this.elementInterval = elementInterval;
+        this.elementStroke = elementStroke;
+        this.elementAuthor = elementAuthor;
+        this.elementNotes = null;
+
+        elementTotalDistance = elementQuantity * elementDistance;
+        elementTotalDuration = elementQuantity * elementInterval;
+    }
+
+    public WorkoutElement(int elementDistance, int elementInterval, String elementAuthor, STROKE elementStroke) {
+        this.elementQuantity = 1;
+        this.elementDistance = elementDistance;
+        this.elementInterval = elementInterval;
+        this.elementStroke = elementStroke;
+        this.elementAuthor = elementAuthor;
         this.elementNotes = null;
 
         elementTotalDistance = elementDistance;
@@ -160,5 +215,13 @@ public class WorkoutElement {
 
     public void setElementNotes(String elementNotes) {
         this.elementNotes = elementNotes;
+    }
+
+    public String getElementAuthor() {
+        return elementAuthor;
+    }
+
+    public void setElementAuthor(String elementAuthor) {
+        this.elementAuthor = elementAuthor;
     }
 }

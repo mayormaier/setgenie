@@ -15,7 +15,7 @@ public class LoginUI extends JFrame{
 
     public LoginUI(){
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setSize(850, 300);
+        setSize(600, 300);
         add(panel1);
     }
 
