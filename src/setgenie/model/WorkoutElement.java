@@ -3,7 +3,7 @@ package setgenie.model;
 import java.io.Serializable;
 import java.util.concurrent.TimeUnit;
 
-public class WorkoutElement implements Serializable {
+public class WorkoutElement implements Serializable, Comparable<WorkoutElement>{
 
     private int elementQuantity;
     private int elementDistance;
@@ -14,6 +14,17 @@ public class WorkoutElement implements Serializable {
     private String elementNotes;
 
     private String elementAuthor;
+
+    @Override
+    public int compareTo(WorkoutElement o) {
+        if (this.elementQuantity == o.elementQuantity && this.elementDistance == o.elementDistance && this.elementInterval == o.elementInterval && this.elementStroke == o.elementStroke){
+            return 0;
+        } else if (this.elementTotalDistance > o.elementTotalDistance || this.elementTotalDuration > o.elementTotalDuration){
+            return 1;
+        } else {
+            return -1;
+        }
+    }
 
     public enum STROKE {
         BUTTERFLY("Butterfly"), BACKSTROKE("Backstroke"), BREASTSTROKE("Breaststroke"), FREESTYLE("Freestyle"),
@@ -223,5 +234,20 @@ public class WorkoutElement implements Serializable {
 
     public void setElementAuthor(String elementAuthor) {
         this.elementAuthor = elementAuthor;
+    }
+
+    public boolean decideToInsert(WorkoutElement w){
+        boolean decision = false;
+
+        if (this.elementTotalDistance < w.elementTotalDistance){
+            return true;
+        } else if (this.elementTotalDistance == w.elementTotalDistance){
+            if (this.elementTotalDuration < w.elementTotalDuration){
+                return true;
+            } else {
+                return false;
+            }
+        }
+        return false;
     }
 }
